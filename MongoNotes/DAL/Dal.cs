@@ -50,16 +50,24 @@ namespace MongoNotes.DAL
 
         private MongoCollection<Note> getNotesCollection()
         {
-            MongoServer server = MongoServer.Create(connectionString);
-            MongoDatabase database = server.GetDatabase(dbName);
+            if (mongoServer == null)
+            {
+                MongoClient c = new MongoClient(connectionString);
+                mongoServer = c.GetServer();
+            }
+            MongoDatabase database = mongoServer.GetDatabase(dbName);
             MongoCollection<Note> noteCollection = database.GetCollection<Note>(collectionName);
             return noteCollection;
         }
 
         private MongoCollection<Note> getNotesCollectionForEdit()
         {
-            MongoServer server = MongoServer.Create(connectionString);
-            MongoDatabase database = server.GetDatabase(dbName);
+            if (mongoServer == null)
+            {
+                MongoClient c = new MongoClient(connectionString);
+                mongoServer = c.GetServer();
+            }
+            MongoDatabase database = mongoServer.GetDatabase(dbName);
             MongoCollection<Note> noteCollection = database.GetCollection<Note>(collectionName);
             return noteCollection;
         }
