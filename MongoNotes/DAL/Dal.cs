@@ -14,7 +14,7 @@ namespace MongoNotes.DAL
 
         private string connectionString = System.Environment.GetEnvironmentVariable("CUSTOMCONNSTR_MONGOLAB_URI");
 
-        private string dbName = "MongoLab";
+        private string dbName = "MongoLab-3z";
         private string collectionName = "Notes";
         public Dal()
         {
